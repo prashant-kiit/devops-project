@@ -1,61 +1,63 @@
 import { useEffect, useState } from "react";
-import { User, CreateUserData } from "./types/user";
-import { api } from "./api/users";
-import { UserForm } from "./components/UserForm";
+import { api } from "./api/items";
+import { ItemForm } from "./components/ItemForm";
 import { Pencil, Trash2, Plus, Loader2 } from "lucide-react";
 
 function App() {
-  const [users, setUsers] = useState<User[]>([]);
+  const [items, setItems] = useState<{ id: number; name: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [editingItem, setEditingItem] = useState<{
+    id: number;
+    name: string;
+  } | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const fetchUsers = async () => {
+  const fetchItems = async () => {
     try {
       setLoading(true);
-      const data = await api.getUsers();
-      setUsers(data);
+      const data = await api.getItems();
+      setItems(data);
       setError(null);
     } catch (err) {
-      setError("Failed to fetch users" + err);
+      setError("Failed to fetch items" + err);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchUsers();
+    fetchItems();
   }, []);
 
-  const handleCreate = async (userData: CreateUserData) => {
+  const handleCreate = async (item: { name: string }) => {
     try {
-      await api.createUser(userData);
-      await fetchUsers();
+      await api.createItem(item);
+      await fetchItems();
       setIsFormOpen(false);
     } catch (err) {
-      setError("Failed to create user" + err);
+      setError("Failed to create item" + err);
     }
   };
 
-  const handleUpdate = async (userData: CreateUserData) => {
-    if (!editingUser) return;
+  const handleUpdate = async (item: { name: string }) => {
+    if (!editingItem) return;
     try {
-      await api.updateUser({ ...userData, id: editingUser.id });
-      await fetchUsers();
-      setEditingUser(null);
+      await api.updateItem({ ...item, id: editingItem.id });
+      await fetchItems();
+      setEditingItem(null);
     } catch (err) {
       setError("Failed to update user" + err);
     }
   };
 
   const handleDelete = async (id: number) => {
-    if (!window.confirm("Are you sure you want to delete this user?")) return;
+    if (!window.confirm("Are you sure you want to delete this item?")) return;
     try {
-      await api.deleteUser(id);
-      await fetchUsers();
+      await api.deleteItem(id);
+      await fetchItems();
     } catch (err) {
-      setError("Failed to delete user" + err);
+      setError("Failed to delete item" + err);
     }
   };
 
@@ -73,14 +75,14 @@ function App() {
         <div className="bg-white rounded-lg shadow-md p-6">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold text-gray-900">
-              User Management
+              Item Management
             </h1>
             <button
               onClick={() => setIsFormOpen(true)}
               className="flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
             >
               <Plus className="w-4 h-4 mr-2" />
-              Add User
+              Add Item
             </button>
           </div>
 
@@ -90,17 +92,17 @@ function App() {
             </div>
           )}
 
-          {(isFormOpen || editingUser) && (
+          {(isFormOpen || editingItem) && (
             <div className="mb-6 p-4 border rounded-md bg-gray-50">
               <h2 className="text-lg font-semibold mb-4">
-                {editingUser ? "Edit User" : "Create New User"}
+                {editingItem ? "Edit Item" : "Create New Item"}
               </h2>
-              <UserForm
-                user={editingUser || undefined}
-                onSubmit={editingUser ? handleUpdate : handleCreate}
+              <ItemForm
+                item={editingItem || undefined}
+                onSubmit={editingItem ? handleUpdate : handleCreate}
                 onCancel={() => {
                   setIsFormOpen(false);
-                  setEditingUser(null);
+                  setEditingItem(null);
                 }}
               />
             </div>
@@ -111,13 +113,7 @@ function App() {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Role
+                    Item
                   </th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
@@ -125,32 +121,18 @@ function App() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {users.map((user) => (
-                  <tr key={user.id}>
-                    <td className="px-6 py-4 whitespace-nowrap">{user.name}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {user.email}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span
-                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                          user.role === "admin"
-                            ? "bg-purple-100 text-purple-800"
-                            : "bg-green-100 text-green-800"
-                        }`}
-                      >
-                        {user.role}
-                      </span>
-                    </td>
+                {items.map((item) => (
+                  <tr key={item.id}>
+                    <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <button
-                        onClick={() => setEditingUser(user)}
+                        onClick={() => setEditingItem(item)}
                         className="text-indigo-600 hover:text-indigo-900 mr-3"
                       >
                         <Pencil className="w-4 h-4" />
                       </button>
                       <button
-                        onClick={() => handleDelete(user.id)}
+                        onClick={() => handleDelete(item.id)}
                         className="text-red-600 hover:text-red-900"
                       >
                         <Trash2 className="w-4 h-4" />
