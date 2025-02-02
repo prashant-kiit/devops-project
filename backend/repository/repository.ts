@@ -1,5 +1,3 @@
-import { Request, Response } from "express";
-
 // In-memory data store
 let items: { id: number; name: string }[] = [];
 

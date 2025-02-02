@@ -1,5 +1,4 @@
-import express, { Request, Response } from "express";
-import { app, port } from "..";
+import express from "express";
 import {
   deleteItemById,
   getItemById,
