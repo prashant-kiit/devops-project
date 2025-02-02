@@ -1,54 +1,28 @@
 import express, { Request, Response } from "express";
 import { app, port } from "..";
+import {
+  deleteItemById,
+  getItemById,
+  getItems,
+  postItems,
+  putItemById,
+} from "../controller/controllers";
 
-const router = express.Router();
-
-// In-memory data store
-let currentId = 1;
-let items: { id: number; name: string }[] = [];
+export const router = express.Router();
 
 // Create
-router.post("/items", (req: Request, res: Response) => {
-  const { name } = req.body;
-  const newItem = { id: currentId++, name };
-  items.push(newItem);
-  res.status(201).json(newItem);
-});
+router.post("/items", postItems);
 
 // Read All
-router.get("/items", (req: Request, res: Response) => {
-  res.status(200).json(items);
-});
+router.get("/items", getItems);
 
 // Read One
-router.get("/items/:id", (req: Request, res: Response) => {
-  const item = items.find((i) => i.id === parseInt(req.params.id));
-  if (item) {
-    res.status(200).json(item);
-  } else {
-    res.status(404).json({ message: "Item not found" });
-  }
-});
+router.get("/items/:id", getItemById);
 
 // Update
-router.put("/items/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
-  const { name } = req.body;
-  const itemIndex = items.findIndex((i) => i.id === id);
-
-  if (itemIndex !== -1) {
-    items[itemIndex].name = name;
-    res.status(200).json(items[itemIndex]);
-  } else {
-    res.status(404).json({ message: "Item not found" });
-  }
-});
+router.put("/items/:id", putItemById);
 
 // Delete
-router.delete("/items/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
-  items = items.filter((i) => i.id !== id);
-  res.status(204).send();
-});
+router.delete("/items/:id", deleteItemById);
 
 export default router;
