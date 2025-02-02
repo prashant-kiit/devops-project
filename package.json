@@ -1,7 +1,7 @@
 {
-  "name": "sample-backend",
+  "name": "sample-project",
   "version": "1.0.0",
-  "description": "backend for learning devops",
+  "description": "project for learning devops",
   "repository": {
     "type": "git",
     "url": "devops-project"
@@ -10,30 +10,20 @@
   "author": "prashant-kiit",
   "type": "commonjs",
   "main": "index.js",
+  "workspaces": [
+    "app/*"
+  ],
   "scripts": {
-    "lint": "npx eslint .",
     "clean": "rm -r dist",
-    "build": "webpack",
-    "test": "node dist/bundle.js"
-  },
-  "dependencies": {
-    "body-parser": "^1.20.3",
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
-    "ts-loader": "^9.5.2",
-    "url": "^0.11.4"
+    "lint": "npm run lint --workspaces",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
     "eslint": "^9.19.0",
-    "eslint-plugin-react": "^7.37.4",
     "globals": "^15.14.0",
-    "node-libs-browser": "^2.2.1",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.22.0",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1"
+    "typescript-eslint": "^8.22.0"
   }
 }
