@@ -17,7 +17,7 @@
     "clean": "rm -r dist",
     "lint": "npm run lint --workspaces",
     "build": "npm run build --workspaces",
-    "test": "npm run test --workspaces",
+    "test": "concurrently -n BACKEND,FRONTEND -c green,blue \"npm:test:backend\" \"npm:test:frontend\"",
     "test:backend": "npm run test --workspace=backend",
     "test:frontend": "npm run test --workspace=frontend"
   },
@@ -27,5 +27,8 @@
     "globals": "^15.14.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.22.0"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2"
   }
 }
