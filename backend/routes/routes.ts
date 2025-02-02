@@ -4,14 +4,14 @@ import {
   deleteItemById,
   getItemById,
   getItems,
-  postItems,
+  postItem,
   putItemById,
 } from "../controller/controllers";
 
 export const router = express.Router();
 
 // Create
-router.post("/items", postItems);
+router.post("/items", postItem);
 
 // Read All
 router.get("/items", getItems);
