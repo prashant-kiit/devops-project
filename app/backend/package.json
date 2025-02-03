@@ -14,7 +14,7 @@
     "lint": "npx eslint .",
     "build": "webpack",
     "start": "node ../../dist/backend/bundle.js",
-    "test": "jest --detectOpenHandles",
+    "test": "jest",
     "test:watch": "jest --watch"
   },
   "dependencies": {

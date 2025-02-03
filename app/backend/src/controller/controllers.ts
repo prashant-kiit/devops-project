@@ -26,7 +26,10 @@ export const getItemById = (req: Request, res: Response) => {
   if (item) {
     res.status(200).json(item);
   } else {
-    res.status(404).json({ message: "Item not found" });
+    res.status(404).json({
+      message: "Not found",
+      error: "Item is not found",
+    });
   }
 };
 
@@ -36,9 +39,12 @@ export const putItemById = (req: Request, res: Response) => {
   const updatedItemId = updateItemWhereId(id, name);
 
   if (updatedItemId) {
-    res.status(404).json({ message: "Item not found" });
+    res.status(201).json({ id: updatedItemId });
   } else {
-    res.status(200).json(updatedItemId);
+    res.status(404).json({
+      message: "Not found",
+      error: "Item is not found",
+    });
   }
 };
 
