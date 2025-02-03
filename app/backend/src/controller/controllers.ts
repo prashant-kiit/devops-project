@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
 import {
-    deleteItemWhereId,
+  deleteItemWhereId,
   insertItem,
   selectAllItems,
   selectItemWhereId,
   updateItemWhereId,
 } from "../repository/repository";
 
-let currentId = 1;
+let currentId = 4;
 export const postItem = (req: Request, res: Response) => {
   const { name } = req.body;
   const newItem = { id: currentId++, name };
   const newItemId = insertItem(newItem);
-  res.status(201).json(newItemId);
+  res.status(201).json({ id: newItemId });
 };
 
 export const getItems = (req: Request, res: Response) => {

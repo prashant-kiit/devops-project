@@ -17,9 +17,9 @@
     "clean": "rm -r dist",
     "lint": "npm run lint --workspaces",
     "build": "npm run build --workspaces",
-    "test": "concurrently -n BACKEND,FRONTEND -c green,blue \"npm:test:backend\" \"npm:test:frontend\"",
-    "test:backend": "npm run test --workspace=backend",
-    "test:frontend": "npm run test --workspace=frontend"
+    "start": "concurrently -n BACKEND,FRONTEND -c green,blue \"npm:start:backend\" \"npm:start:frontend\"",
+    "start:backend": "npm run start --workspace=backend",
+    "start:frontend": "npm run start --workspace=frontend"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
