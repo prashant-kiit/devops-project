@@ -1,0 +1,13 @@
+{
+  "apps": [
+    {
+      "name": "backend_pm2",
+      "script": "../../dist/backend/bundle.js",
+      "instances": "max",
+      "exec_mode": "cluster",
+      "env": {
+        "ENV": "dev"
+      }
+    }
+  ]
+}
