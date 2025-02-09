@@ -13,7 +13,10 @@
   "scripts": {
     "lint": "npx eslint .",
     "build": "webpack",
-    "start": "node ../../dist/backend/bundle.js",
+    "server1:start": "cross-env PORT=3001 node ../../dist/backend/bundle.js",
+    "server2:start": "cross-env PORT=3002 node ../../dist/backend/bundle.js",
+    "server3:start": "cross-env PORT=3003 node ../../dist/backend/bundle.js",
+    "server4:start": "cross-env PORT=3004 node ../../dist/backend/bundle.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -30,6 +33,7 @@
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/supertest": "^6.0.2",
+    "cross-env": "^7.0.3",
     "eslint-plugin-react": "^7.37.4",
     "jest": "^29.7.0",
     "node-libs-browser": "^2.2.1",
