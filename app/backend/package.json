@@ -13,18 +13,16 @@
   "scripts": {
     "lint": "npx eslint .",
     "build": "webpack",
-    "server1:start": "cross-env PORT=3001 node ../../dist/backend/bundle.js",
-    "server2:start": "cross-env PORT=3002 node ../../dist/backend/bundle.js",
-    "server3:start": "cross-env PORT=3003 node ../../dist/backend/bundle.js",
-    "server4:start": "cross-env PORT=3004 node ../../dist/backend/bundle.js",
+    "start:dev": "npx pm2 start pm2.json",
+    "start:prod": "npx pm2 start pm2.json --env production",
+    "log": "npx pm2 logs",
+    "stop": "npx pm2 stop pm2.json",
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "pm2": "^5.4.3",
     "ts-jest": "^29.2.5",

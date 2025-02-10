@@ -6,7 +6,10 @@
       "instances": "max",
       "exec_mode": "cluster",
       "env": {
-        "ENV": "dev"
+        "BACKEND_PORT": 3000
+      },
+      "env_production": {
+        "BACKEND_PORT": 3001
       }
     }
   ]
