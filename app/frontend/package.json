@@ -12,7 +12,8 @@
   "scripts": {
     "lint": "npx eslint .",
     "build": "vite build",
-    "start": "vite preview",
+    "start:dev": "vite",
+    "start:prod": "vite preview",
     "test:open": "cypress open",
     "test:run": "cypress run"
   },
