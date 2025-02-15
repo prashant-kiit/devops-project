@@ -13,19 +13,27 @@
   "scripts": {
     "lint": "npx eslint .",
     "build": "webpack",
-    "start:dev": "npx cross-env BACKEND_PORT=3000 tsx index.ts",
+    "start:dev": "npx cross-env ENV=development tsx watch index.ts",
     "start:prod": "npx pm2 start pm2.json --env production",
     "log": "npx pm2 logs",
     "stop": "npx pm2 stop pm2.json",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "upgrade": "npx cross-env ENV=development drizzle-kit up",
+    "generate": "npx cross-env ENV=development drizzle-kit generate",
+    "migrate": "npx cross-env ENV=development drizzle-kit migrate",
+    "pull": "npx cross-env ENV=development drizzle-kit pull",
+    "check": "npx cross-env ENV=development drizzle-kit check"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.39.3",
     "express": "^4.21.2",
     "pm2": "^5.4.3",
+    "postgres": "^3.4.5",
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.2",
     "url": "^0.11.4"
@@ -35,6 +43,7 @@
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/supertest": "^6.0.2",
+    "drizzle-kit": "^0.30.4",
     "eslint-plugin-react": "^7.37.4",
     "jest": "^29.7.0",
     "node-libs-browser": "^2.2.1",
