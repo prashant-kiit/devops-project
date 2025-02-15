@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const PORT = import.meta.env.VITE_BACKEND_PORT;
+
 export const api = {
   getItems: async (): Promise<{ id: number; name: string }[]> => {
-    const response = await axios.get("http://localhost:3000/app/items");
+    const response = await axios.get(`http://localhost:${PORT}/app/items`);
     console.log(response.data);
     return response.data;
   },
@@ -10,14 +12,19 @@ export const api = {
   getItemById: async (
     id: number
   ): Promise<{ id: number; name: string } | undefined> => {
-    const response = await axios.get(`http://localhost:3000/app/items/${id}`);
+    const response = await axios.get(
+      `http://localhost:${PORT}/app/items/${id}`
+    );
     return response.data;
   },
 
   createItem: async (item: {
     name: string;
   }): Promise<{ id: number; name: string }> => {
-    const response = await axios.post("http://localhost:3000/app/items", item);
+    const response = await axios.post(
+      `http://localhost:${PORT}/app/items`,
+      item
+    );
     return response.data;
   },
 
@@ -26,13 +33,13 @@ export const api = {
     name: string;
   }): Promise<{ id: number; name: string }> => {
     const response = await axios.put(
-      `http://localhost:3000/app/items/${item.id}`,
+      `http://localhost:${PORT}/app/items/${item.id}`,
       item
     );
     return response.data;
   },
 
   deleteItem: async (id: number): Promise<void> => {
-    await axios.delete(`http://localhost:3000/app/items/${id}`);
+    await axios.delete(`http://localhost:${PORT}/app/items/${id}`);
   },
 };
