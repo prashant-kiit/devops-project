@@ -20,10 +20,11 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "upgrade": "npx cross-env ENV=development drizzle-kit up",
-    "generate": "npx cross-env ENV=development drizzle-kit generate",
-    "migrate": "npx cross-env ENV=development drizzle-kit migrate",
     "pull": "npx cross-env ENV=development drizzle-kit pull",
-    "check": "npx cross-env ENV=development drizzle-kit check"
+    "push": "npx cross-env ENV=development drizzle-kit push",
+    "check": "npx cross-env ENV=development drizzle-kit check",
+    "generate": "npx cross-env ENV=production drizzle-kit generate",
+    "migrate": "npx cross-env ENV=production drizzle-kit migrate"
   },
   "dependencies": {
     "body-parser": "^1.20.3",

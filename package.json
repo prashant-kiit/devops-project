@@ -16,9 +16,8 @@
   "scripts": {
     "clean": "rm -r dist",
     "lint": "npm run lint --workspaces",
-    "build": "npm run build --workspaces",
-    "start:backend:dev": "npm run start:dev --workspace=backend",
-    "start:frontend:dev": "npm run start:dev --workspace=frontend",
+    "build": "npm run build --workspaces && npm run generate --workspace=backend",
+    "start:database:prod": "npm run migrate --workspace=backend",
     "start:backend:prod": "npm run start:prod --workspace=backend",
     "start:frontend:prod": "npm run start:prod --workspace=frontend",
     "stop:backend:prod": "npm run stop --workspace=backend"
