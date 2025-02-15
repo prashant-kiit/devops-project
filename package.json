@@ -17,9 +17,11 @@
     "clean": "rm -r dist",
     "lint": "npm run lint --workspaces",
     "build": "npm run build --workspaces",
-    "start": "concurrently -n BACKEND,FRONTEND -c green,blue \"npm:start:backend\" \"npm:start:frontend\"",
-    "start:backend": "npm run start --workspace=backend",
-    "start:frontend": "npm run start --workspace=frontend"
+    "start:backend:dev": "npm run start:dev --workspace=backend",
+    "start:frontend:dev": "npm run start:dev --workspace=frontend",
+    "start:backend:prod": "npm run start:prod --workspace=backend",
+    "start:frontend:prod": "npm run start:prod --workspace=frontend",
+    "stop:backend:prod": "npm run stop --workspace=backend"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -27,8 +29,5 @@
     "globals": "^15.14.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.22.0"
-  },
-  "dependencies": {
-    "concurrently": "^9.1.2"
   }
 }
