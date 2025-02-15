@@ -7,22 +7,21 @@ import {
   updateItemWhereId,
 } from "../repository/repository";
 
-let currentId = 4;
-export const postItem = (req: Request, res: Response) => {
+export const postItem = async (req: Request, res: Response) => {
   const { name } = req.body;
-  const newItem = { id: currentId++, name };
-  const newItemId = insertItem(newItem);
+  const newItem = { name };
+  const newItemId = await insertItem(newItem);
   res.status(201).json({ id: newItemId });
 };
 
-export const getItems = (req: Request, res: Response) => {
-  const items = selectAllItems();
+export const getItems = async (req: Request, res: Response) => {
+  const items = await selectAllItems();
   res.status(200).json(items);
 };
 
-export const getItemById = (req: Request, res: Response) => {
+export const getItemById = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
-  const item = selectItemWhereId(id);
+  const item = await selectItemWhereId(id);
   if (item) {
     res.status(200).json(item);
   } else {
@@ -33,10 +32,10 @@ export const getItemById = (req: Request, res: Response) => {
   }
 };
 
-export const putItemById = (req: Request, res: Response) => {
+export const putItemById = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const { name } = req.body;
-  const updatedItemId = updateItemWhereId(id, name);
+  const updatedItemId = await updateItemWhereId(id, name);
 
   if (updatedItemId) {
     res.status(201).json({ id: updatedItemId });
@@ -48,8 +47,8 @@ export const putItemById = (req: Request, res: Response) => {
   }
 };
 
-export const deleteItemById = (req: Request, res: Response) => {
+export const deleteItemById = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
-  deleteItemWhereId(id);
+  await deleteItemWhereId(id);
   res.status(204).send();
 };

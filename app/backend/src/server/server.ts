@@ -2,9 +2,10 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./routes/routes";
+import config from "../../config";
 
-export const app = express();
-export const port = process.env.BACKEND_PORT;
+const app = express();
+const port = config.BACKEND_PORT;
 
 app.use(cors());
 app.use(bodyParser.json());

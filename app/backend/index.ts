@@ -1,1 +1,2 @@
-export * as app from "./src/server";
+
+export * from "./src/main";
