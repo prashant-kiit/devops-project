@@ -2,13 +2,11 @@
   "apps": [
     {
       "name": "backend_pm2",
-      "script": "../../dist/backend/bundle.js",
+      "script": "../../dist/backend/server/bundle.js",
       "instances": 4,
       "exec_mode": "cluster",
       "env_production": {
-        "ENV": "production",
-        "BACKEND_PORT": 3001,
-        "DATABASE_URL": "postgresql://postgres.iydeuljrustlvnbthreq:Prashant123%23@aws-0-ap-south-1.pooler.supabase.com:6543/postgres"
+        "ENV": "production"
       }
     }
   ]
