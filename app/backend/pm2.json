@@ -5,9 +5,6 @@
       "script": "../../dist/backend/bundle.js",
       "instances": "max",
       "exec_mode": "cluster",
-      "env": {
-        "BACKEND_PORT": 3000
-      },
       "env_production": {
         "BACKEND_PORT": 3001
       }
