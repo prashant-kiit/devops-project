@@ -1,5 +1,5 @@
 // In-memory data store
-const items: { id: number; name: string }[] = [
+let items: { id: number; name: string }[] = [
   { id: 1, name: "Item 1" },
   { id: 2, name: "Item 2" },
   { id: 3, name: "Item 3" },
@@ -26,5 +26,5 @@ export const updateItemWhereId = (id: number, name: string) => {
 };
 
 export const deleteItemWhereId = (id: number) => {
-  items.filter((i) => i.id !== id);
+  items = items.filter((i) => i.id !== id);
 };
