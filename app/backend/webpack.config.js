@@ -7,7 +7,7 @@ export default {
   entry: "./index.ts",
   output: {
     filename: "bundle.js",
-    path: _resolve(__dirname, "../../dist/backend/server"),
+    path: _resolve(__dirname, "./dist/backend/server"),
   },
   resolve: {
     extensions: [".ts", ".js"],

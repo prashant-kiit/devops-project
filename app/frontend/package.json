@@ -10,11 +10,12 @@
   "author": "prashant-kiit",
   "main": "index.js",
   "scripts": {
+    "start:dev": "vite --host",
+    "test:watch": "cypress open",
+    "clean": "rm -rf ./dist",
     "lint": "npx eslint .",
     "build": "vite build",
-    "start:dev": "vite",
     "start:prod": "vite preview",
-    "test:open": "cypress open",
     "test:run": "cypress run"
   },
   "dependencies": {

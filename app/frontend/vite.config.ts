@@ -14,7 +14,7 @@ export default defineConfig({
     port: 5001,
   },
   build: {
-    outDir: "../../dist/frontend",
+    outDir: "./dist/frontend",
     assetsDir: "assets",
     sourcemap: true,
     minify: "terser",
