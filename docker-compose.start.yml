@@ -1,16 +1,16 @@
 services:
   backend:
     build:
-      target: dev
+      target: start
     ports:
-      - 3000:3000
+      - 3001:3001
     volumes:
       - ./app/backend/:/app/backend/
 
   frontend:
     build:
-      target: dev
+      target: start
     ports:
-      - 5000:5000
+      - 5001:5001
     volumes:
       - ./app/frontend/:/app/frontend/

@@ -4,12 +4,8 @@ services:
     container_name: devops-backend
     build:
       context: ./app/backend
-    ports:
-      - 3000:3000
 
   frontend:
     container_name: devops-frontend
     build:
       context: ./app/frontend
-    ports:
-      - 5000:5000

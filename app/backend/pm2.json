@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "backend_pm2",
-      "script": "../../dist/backend/server/bundle.js",
+      "script": "./dist/server/bundle.cjs",
       "instances": 4,
       "exec_mode": "cluster",
       "env_production": {
@@ -11,3 +11,4 @@
     }
   ]
 }
+

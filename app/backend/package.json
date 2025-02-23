@@ -24,7 +24,7 @@
     "generate": "npx cross-env ENV=production drizzle-kit generate",
     "migrate": "npx cross-env ENV=production drizzle-kit migrate",
     "build": "webpack",
-    "start:prod": "npx pm2 start pm2.json --env production",
+    "start:prod": "npx cross-env ENV=production node ./dist/server/bundle.cjs",
     "test": "jest"
   },
   "dependencies": {
@@ -38,7 +38,12 @@
     "postgres": "^3.4.5",
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.2",
-    "url": "^0.11.4"
+    "url": "^0.11.4",
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "globals": "^15.15.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.22.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

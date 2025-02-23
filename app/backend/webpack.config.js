@@ -6,8 +6,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export default {
   entry: "./index.ts",
   output: {
-    filename: "bundle.js",
-    path: _resolve(__dirname, "./dist/backend/server"),
+    filename: "bundle.cjs",
+    path: _resolve(__dirname, "./dist/server"),
   },
   resolve: {
     extensions: [".ts", ".js"],

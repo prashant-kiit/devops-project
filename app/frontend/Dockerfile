@@ -8,6 +8,14 @@ RUN npm i
 
 COPY . .
 
+FROM base AS start
+
+RUN npm run lint
+
+RUN npm run build
+
+ENTRYPOINT [ "npm", "run", "start:prod" ]
+
 FROM base AS dev
 
 ENTRYPOINT [ "npm", "run", "start:dev" ]
