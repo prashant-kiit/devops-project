@@ -17,14 +17,14 @@
     "check": "npx cross-env ENV=development drizzle-kit check",
     "start:dev": "npx cross-env ENV=development tsx watch index.ts",
     "log": "npx pm2 logs",
-    "stop": "npx pm2 stop pm2.json",
+    "stop": "npx pm2 stop all",
     "test:watch": "jest --watch",
     "clean": "rm -rf ./dist",
     "lint": "npx eslint .",
     "generate": "npx cross-env ENV=production drizzle-kit generate",
     "migrate": "npx cross-env ENV=production drizzle-kit migrate",
     "build": "webpack",
-    "start:prod": "npx cross-env ENV=production node ./dist/server/bundle.cjs",
+    "start:prod": "npx cross-env ENV=production pm2 start ./dist/server/bundle.cjs -i max",
     "test": "jest"
   },
   "dependencies": {

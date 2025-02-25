@@ -1,11 +1,20 @@
-
 services:
-  backend:
-    container_name: devops-backend
+  backend_1:
+    container_name: devops-backend-1
     build:
       context: ./app/backend
 
-  frontend:
-    container_name: devops-frontend
+  backend_2:
+    container_name: devops-backend-2
+    build:
+      context: ./app/backend
+
+  frontend_1:
+    container_name: devops-frontend-1
+    build:
+      context: ./app/frontend
+
+  frontend_2:
+    container_name: devops-frontend-2
     build:
       context: ./app/frontend

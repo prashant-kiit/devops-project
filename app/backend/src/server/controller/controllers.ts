@@ -8,6 +8,7 @@ import {
 } from "../repository/repository";
 
 export const postItem = async (req: Request, res: Response) => {
+  console.log("POST");
   const { name } = req.body;
   const newItem = { name };
   const newItemId = await insertItem(newItem);
@@ -15,6 +16,7 @@ export const postItem = async (req: Request, res: Response) => {
 };
 
 export const getItems = async (req: Request, res: Response) => {
+  console.log("GET");
   const items = await selectAllItems();
   res.status(200).json(items);
 };

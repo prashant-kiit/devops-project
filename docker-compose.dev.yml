@@ -1,16 +1,32 @@
 services:
-  backend:
+  backend_1:
     build:
       target: dev
     ports:
-      - 3000:3000
+      - 4001:3000
     volumes:
       - ./app/backend/:/app/backend/
 
-  frontend:
+  backend_2:
     build:
       target: dev
     ports:
-      - 5000:5000
+      - 4000:3000
+    volumes:
+      - ./app/backend/:/app/backend/
+
+  frontend_1:
+    build:
+      target: dev
+    ports:
+      - 6002:5000
+    volumes:
+      - ./app/frontend/:/app/frontend/
+
+  frontend_2:
+    build:
+      target: dev
+    ports:
+      - 6001:5000
     volumes:
       - ./app/frontend/:/app/frontend/
